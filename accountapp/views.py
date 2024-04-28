@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DetailView, DeleteView
+from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
 
 from accountapp.decorators import account_ownership_required
 from accountapp.forms import AccountUpdateForm
@@ -27,7 +27,7 @@ def hello_world(request):
         new_hello_world.save()
 
         hello_world_list = HelloWorld.objects.all()
-        return HttpResponseRedirect(reverse('accountapp:Hello_world'))
+        return HttpResponseRedirect(reverse('accountapp:hello_world'))
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/Hello_world.html', context={'hello_world_list': hello_world_list})
@@ -48,7 +48,7 @@ class AccountDetailView(DetailView):
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
-class AccountUpdateView(CreateView):
+class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountUpdateForm
     context_object_name = 'target_user'

@@ -14,12 +14,14 @@
                 <span>SignUp</span>
             </a>
             {% else %}
-            <a href="{% url 'accountapp:detail' pk=user.pk %}">
+            <a href="{% url 'accountapp:detail' pk=request.user.pk %}">
                 <span>MyPage</span>
             </a>
-            <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
-                <span>logout</span>
-            </a>
+
+            <form action="{% url 'accountapp:logout' %}" method="post"> {# 장고 5.0부터 LogoutView에서는 POST 방식만 허용 #}
+                {% csrf_token %}
+                <input type="submit" value="logout" />
+            </form>
             {% endif %}
         </div>
     </div>
