@@ -20,7 +20,7 @@
                 <span>MyPage</span>
             </a>
 
-            <form action="{% url 'accountapp:logout' %}" method="post"> {# 장고 5.0부터 LogoutView에서는 POST 방식만 허용 #}
+            <form action="{% url 'accountapp:logout' %}?next={{ request.path }}" method="post"> {# 장고 5.0부터 LogoutView에서는 POST 방식만 허용 #}
                 {% csrf_token %}
                 <input type="submit" value="logout" />
             </form>

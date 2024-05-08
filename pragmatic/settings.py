@@ -39,7 +39,7 @@ SECRET_KEY = 'django-insecure-gq)n#=4qc60-vtbh^vrj_idwhg_ny!^05#byb%@sjce9#_%k(x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -145,7 +145,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = reverse_lazy('accountapp:Hello_world')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
